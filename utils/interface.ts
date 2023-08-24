@@ -7,3 +7,12 @@ export interface ICustomButtonProps {
   buttonType?: "button" | "submit" | "reset";
   handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
+
+export interface ICustomFilterProps {
+  title: string;
+}
+
+export interface ISearchManuFacturerProps {
+  manuFacturer: string;
+  setManuFacturer: (manuFacturer: string) => void;
+}
