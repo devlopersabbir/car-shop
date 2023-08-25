@@ -6,12 +6,12 @@ const fetchCars = async (): Promise<any> => {
     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
   };
   try {
-    const response = await axios.get(
+    const { data } = await axios.get(
       "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla",
       { headers }
     );
 
-    return response;
+    return data;
   } catch (error) {
     console.log(error);
     return new Error("Server error!");

@@ -1,11 +1,10 @@
-"use client";
+// "use client";
 
-import { CustomFilter, Hero, SearchBar } from "@/components";
-import { fetchCars } from "@/utils";
+import { CarCard, CustomFilter, Hero, SearchBar } from "@/components";
+import { ICar, fetchCars } from "@/utils";
 
 export default async function Home() {
-  const allCars = await fetchCars();
-  console.log(allCars);
+  const allCars: ICar[] = await fetchCars();
   return (
     <main className="overflow-hidden">
       <Hero />
@@ -20,6 +19,19 @@ export default async function Home() {
             <CustomFilter title="Fuel" />
           </div>
         </div>
+        {allCars ? (
+          <section>
+            <div className="home__cars-wrapper">
+              {allCars?.map((item: ICar, index: number) => (
+                <CarCard key={index} car={item} />
+              ))}
+            </div>
+          </section>
+        ) : (
+          <div>
+            <h1>no data found!</h1>
+          </div>
+        )}
       </div>
     </main>
   );
