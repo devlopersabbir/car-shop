@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ICar } from ".";
 
 const fetchCars = async (): Promise<any> => {
   const headers = {
@@ -16,6 +17,13 @@ const fetchCars = async (): Promise<any> => {
     console.log(error);
     return new Error("Server error!");
   }
+};
+
+const fetchCarImage = async (car: ICar, angle: string) => {
+  const url = new URL("https://cdn.imagin.studio/getimage");
+  const { make, year, model } = car;
+
+  url.searchParams.append("customer", "hrjavascript-mastery");
 };
 
 export default fetchCars;
