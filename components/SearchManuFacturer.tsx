@@ -1,14 +1,15 @@
 "use client";
 import { ISearchManuFacturerProps } from "@/utils";
-import React, { Fragment, useState } from "react";
+import React, { Dispatch, Fragment, SetStateAction, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { manufacturers } from "@/constant";
 
-const SearchManuFacturer: React.FC<ISearchManuFacturerProps> = ({
-  manuFacturer,
-  setManuFacturer,
-}) => {
+type Props = {
+  manuFacturer: string;
+  setManuFacturer: Dispatch<SetStateAction<string>>;
+};
+const SearchManuFacturer = ({ manuFacturer, setManuFacturer }: Props) => {
   const [query, setQuery] = useState<string>("");
 
   const filltered =

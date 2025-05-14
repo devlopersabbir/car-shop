@@ -11,28 +11,14 @@ type TCarCardProps = {
 };
 
 const CarCard: React.FC<TCarCardProps> = ({ car }) => {
-  const {
-    city_mpg,
-    combination_mpg,
-    cylinders,
-    displacement,
-    drive,
-    fuel_type,
-    highway_mpg,
-    make,
-    model,
-    transmission,
-    year,
-    class: classes,
-  } = car;
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const carRent = calculateCarRent(city_mpg, year);
+  const carRent = calculateCarRent(10, car.year);
 
   return (
     <div className="car-card group cursor-pointer">
       <div className="car-card__content">
         <h2 className="car-card__content-title">
-          {make} {model}
+          {car.make} {car.model}
         </h2>
       </div>
       <p className="flex mt-6 text-[32px] font-extrabold">
@@ -54,16 +40,16 @@ const CarCard: React.FC<TCarCardProps> = ({ car }) => {
               height={20}
             />
             <p className="text-[14px]">
-              {transmission === "a" ? "Automatic" : "Manual"}
+              {car.transmission === "a" ? "Automatic" : "Manual"}
             </p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
             <Image src="/tire.svg" alt="tire " width={20} height={20} />
-            <p className="text-[14px]">{drive.toUpperCase()}</p>
+            <p className="text-[14px]">{car.drive.toUpperCase()}</p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
             <Image src="/gas.svg" alt="tire " width={20} height={20} />
-            <p className="text-[14px]">{city_mpg} MPG</p>
+            <p className="text-[14px]">{car.city_mpg} MPG</p>
           </div>
         </div>
         <div className="car-card__btn-container">
