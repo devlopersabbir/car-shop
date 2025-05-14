@@ -1,7 +1,13 @@
 import { CarCard, CustomFilter, Hero, SearchBar } from "@/components";
-import { ICar, fetchCars } from "@/utils";
+import ShowMore from "@/components/shared/show-more";
+import { yearsOfProduction } from "@/constant";
+import { ICar } from "@/utils";
+import fetchCars, { Filters } from "@/utils/api";
 
-export default async function Home() {
+type Props = {
+  searchPrams: Filters;
+};
+export default async function Home({ searchPrams }: Props) {
   const allCars: ICar[] = await fetchCars();
   const isEmpty = !Array.isArray(allCars) || allCars.length < 0 || !allCars;
 
@@ -16,7 +22,7 @@ export default async function Home() {
         <div className="home__filters">
           <SearchBar />
           <div className="home__filter-container">
-            <CustomFilter title="Fuel" />
+            <CustomFilter title="Fuel" options={yearsOfProduction} />
           </div>
         </div>
         {!isEmpty ? (
@@ -27,6 +33,7 @@ export default async function Home() {
                   <CarCard key={index} car={item} />
                 ))}
             </div>
+            <ShowMore pageNumber={10} />
           </section>
         ) : (
           <div>

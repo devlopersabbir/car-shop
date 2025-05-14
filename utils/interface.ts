@@ -10,8 +10,13 @@ export interface ICustomButtonProps {
   textStyles?: string;
 }
 
+export type OptionProps = {
+  title: string;
+  value: string;
+};
 export interface ICustomFilterProps {
   title: string;
+  options: OptionProps[];
 }
 
 export interface ISearchManuFacturerProps {
